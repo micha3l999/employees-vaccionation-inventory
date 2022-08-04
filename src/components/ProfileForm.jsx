@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import UserContext from '../context/UserContext';
-import { API_URL } from '../util/constants';
+import { API_URL, VACCINATION_STATUS } from '../util/constants';
+import CheckboxSection from './CheckboxSection';
 import FormSection from './FormSection';
 
 export default function ProfileForm() {
@@ -55,11 +56,20 @@ export default function ProfileForm() {
     } else {
       setCreationMsg(response.msg);
     }
+    setInterval(() => {
+      setCreationMsg('');
+    }, 3000);
   };
 
-  useEffect(() => {
-
-  }, []);
+  const handleChangeCheckbox = (event) => {
+    const { checked, name } = event.target;
+    if (checked) {
+      setProfile({ ...profile, [name]: 'VACCINATED' });
+    } else {
+      setProfile({ ...profile, [name]: 'NO_VACCINATED' });
+    }
+    console.log(event.target.name);
+  };
 
   return (
     <>
@@ -88,14 +98,6 @@ export default function ProfileForm() {
         label="Mobile Number"
       />
       <FormSection
-        error={formErrors.vaccinationStatus}
-        value={profile.vaccinationStatus}
-        inputType="text"
-        inputName="vaccinationStatus"
-        handleChange={handleChange}
-        label="Vaccination Status"
-      />
-      <FormSection
         error={formErrors.vaccineType}
         value={profile.vaccineType}
         inputType="text"
@@ -118,6 +120,11 @@ export default function ProfileForm() {
         inputName="dosesNumber"
         handleChange={handleChange}
         label="Doses Number"
+      />
+      <CheckboxSection
+        value={VACCINATION_STATUS.VACCINATED}
+        handleChange={handleChangeCheckbox}
+        inputName="vaccinationStatus"
       />
       <div className="buttons">
         <button className="button" type="button" onClick={handleUpdate}>
