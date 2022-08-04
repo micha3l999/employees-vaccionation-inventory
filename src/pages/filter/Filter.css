@@ -1,3 +1,8 @@
 .min-full {
   min-height: 75vh;
 }
+
+.center {
+  display: flex;
+  align-items: center;
+}

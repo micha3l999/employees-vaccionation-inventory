@@ -7,8 +7,15 @@ function getUsers(req, res) {
     const filters = req.query;
     const vaccinationStatus = filters.vaccinationStatus;
     const vaccineType = filters.vaccineType;
-    const dateRange = filters.dateRange;
-    console.log(req.query);
+    let startDate = filters.startDate;
+    let endDate = filters.endDate;
+
+    if (startDate) {
+        startDate = new Date(startDate);
+    }
+    if (endDate) {
+        endDate = new Date(endDate);
+    }
     const users = [];
 
     /* Return users with common role of user and filters */
@@ -20,6 +27,10 @@ function getUsers(req, res) {
             return
         }
         if (vaccineType && user.vaccineType != vaccineType) {
+            return
+        }
+        const userDate = new Date(user.vaccinationDate);
+        if ((startDate && userDate < startDate) || (endDate && userDate > endDate)) {
             return
         }
         users.push(user);
