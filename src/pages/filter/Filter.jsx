@@ -13,7 +13,7 @@ export default function Filter() {
   const [users, setUsers] = useState([]);
   const [vaccinationStatus, setVaccinationStatus] = useState('');
   const [vaccineType, setVaccineType] = useState('');
-  const [dateRange, setDateRange] = useState('');
+  const [dateRange] = useState('');
   const [userDischarged, setUserDischarged] = useState('');
 
   const getUsers = async () => {
@@ -76,7 +76,7 @@ export default function Filter() {
         <FilterOption
           title={vaccinationStatus}
           options={VACCINATION_STATUS}
-          getUsersByFilter={(value) => setDateRange(value)}
+          getUsersByFilter={(value) => setVaccinationStatus(value)}
         />
         <div className="box my-5 min-full">
           <UsersTable users={users} />
