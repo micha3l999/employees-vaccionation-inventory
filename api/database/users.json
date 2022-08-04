@@ -1,0 +1,34 @@
+{
+    "1234567890": {
+        "name": "Carlos",
+        "lastName": "Cevallos",
+        "identification": "1234567890",
+        "password": "admin",
+        "email": "carlos@gmail.com",
+        "role": "ADMIN",
+        "birthDate": "18-05-1999",
+        "address": "El condado",
+        "phone": "0980936206",
+        "vaccinationStatus": "NO_VACCINATED",
+        "vaccineType": "PFIZER",
+        "vaccinationDate": "18-05-2022",
+        "dosesNumber": 3,
+        "dischargedPatiente": true
+    },
+    "1234567990": {
+        "name": "Carla",
+        "lastName": "Miranda",
+        "identification": "1234567990",
+        "password": "admin",
+        "email": "carla@gmail.com",
+        "role": "USER",
+        "birthDate": "18-05-1999",
+        "address": "El condado",
+        "phone": "0980936206",
+        "vaccinationStatus": "VACCINATED",
+        "vaccineType": "PFIZER",
+        "vaccinationDate": "18-05-2022",
+        "dosesNumber": 3,
+        "dischargedPatiente": true
+    }
+}
