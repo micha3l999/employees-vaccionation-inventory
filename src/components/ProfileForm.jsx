@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../context/UserContext';
-import { API_URL, VACCINATION_STATUS } from '../util/constants';
+import { API_URL, VACCINATION_STATUS, VACCINE_TYPES } from '../util/constants';
 import CheckboxSection from './CheckboxSection';
 import FormSection from './FormSection';
+import SelectSection from './SelectSection';
 
 export default function ProfileForm() {
   const { user, setUser } = useContext(UserContext);
@@ -71,6 +72,11 @@ export default function ProfileForm() {
     console.log(event.target.name);
   };
 
+  const handleChangeSelect = (event) => {
+    const { name, value } = event.target;
+    setProfile({ ...profile, [name]: value });
+  };
+
   return (
     <>
       <FormSection
@@ -97,13 +103,11 @@ export default function ProfileForm() {
         handleChange={handleChange}
         label="Mobile Number"
       />
-      <FormSection
-        error={formErrors.vaccineType}
-        value={profile.vaccineType}
-        inputType="text"
-        inputName="vaccineType"
-        handleChange={handleChange}
+      <SelectSection
+        handleChange={handleChangeSelect}
         label="Vaccine Type"
+        inputName="vaccineType"
+        options={VACCINE_TYPES}
       />
       <FormSection
         error={formErrors.vaccinationDate}
